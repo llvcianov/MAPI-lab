@@ -1,6 +1,6 @@
 # STM32 Embedded Exercises
 
-Embedded C lab exercises for the **Ulteriori Conoscenze** (supplementary skills) module, Bachelor's Degree in Computer Engineering, University of Naples Federico II — bare-metal programming on the STM32F3 Discovery board (Cortex-M4), built with IAR Embedded Workbench.
+Embedded C lab exercises for the Laboratory of Measurements for Automation and Industrial Production, Bachelor's Degree in Computer Engineering, University of Naples Federico II — bare-metal programming on the STM32F3 Discovery board (Cortex-M4), built with IAR Embedded Workbench.
 
 > **Note**: university coursework, written for teaching purposes. Not meant to reflect modern production practices.
 
