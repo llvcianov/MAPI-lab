@@ -1,0 +1,41 @@
+#include "stm32f30x.h"
+#include <stdio.h>
+
+float tempo;
+
+void main(){
+  
+  //ABILITO PERIFERICHE
+  SET_BIT(RCC->AHBENR, RCC_AHBENR_GPIOAEN);
+  SET_BIT(RCC->APB1ENR, RCC_APB1ENR_TIM6EN);
+  
+  //IMPOSTO PA0 COME INPUT DIGITALE
+  CLEAR_BIT(GPIOA->MODER, GPIO_MODER_MODER0);
+  
+  //IMPOSTO PRESCALER PER CONTARE MAX 20 SEC
+  TIM6->PSC = 2441; 
+  
+  while(1){
+    
+    if((READ_BIT(GPIOA->IDR, GPIO_IDR_0) == (GPIO_IDR_0))){ //ASPETTO PRESSIONE PULSANTE
+  
+      TIM6->CNT = 0; //AZZERO IL CONTEGGIO
+      SET_BIT(TIM6->CR1, TIM_CR1_CEN); //ABILITO CONTEGGIO
+  
+      while((READ_BIT(GPIOA->IDR, GPIO_IDR_0) == (GPIO_IDR_0))){}; //ASPETTO RILASCIO PULSANTE
+
+      CLEAR_BIT(TIM6->CR1, TIM_CR1_CEN); //DISABILITO CONTEGGIO
+  
+      tempo = (float)((TIM6->CNT)/3276);
+      printf("Valore contato: %f", tempo);
+    }
+  }
+
+}
+
+
+
+
+
+
+
